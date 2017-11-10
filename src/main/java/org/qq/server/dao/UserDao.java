@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * Created by dxx on 2017/11/7.
+ * 用户注册、登录、注销等功能使用的数据库操作工具类
  */
 public interface UserDao {
     int addUser(int userId, String passwd, Timestamp registerTime);

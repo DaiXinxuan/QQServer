@@ -3,7 +3,9 @@
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--将数据实体类名称简写，方便在mapper.xml中直接调用-->
     <typeAliases>
         <typeAlias type="org.qq.server.entity.UserEntity" alias="UserEntity"/>
+        <typeAlias type="org.qq.server.entity.FriendshipEntity" alias="FriendshipEntity"/>
     </typeAliases>
 </configuration>

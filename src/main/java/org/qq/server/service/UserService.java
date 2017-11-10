@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * Created by dxx on 2017/11/7.
+ * 用户登录，注册，注销操作的服务接口
  */
 public interface UserService {
     //用户注册
