@@ -3,6 +3,7 @@ package org.qq.server.controller;
 import org.qq.server.entity.FriendshipEntity;
 import org.qq.server.entity.UserEntity;
 import org.qq.server.request.UserInfo;
+import org.qq.server.result.FriendInfo;
 import org.qq.server.result.ResultJson;
 import org.qq.server.result.UserStatus;
 import org.qq.server.service.FriendshipService;
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by dxx on 2017/11/7.
@@ -42,6 +45,11 @@ public class UserController {
 
         int userId = userInfo.getUserId();
         String passwd = userInfo.getPasswd();
+        if (userId == 0 || null == passwd || passwd.equals("")) {
+            resultJson.setErrorCode(-1);
+            resultJson.setErrorMsg("注册信息不合规范");
+            return resultJson;
+        }
 
         //检查用户id是否已被注册
         if(userService.checkRepeatUserId(userId) != null) {
@@ -105,6 +113,36 @@ public class UserController {
         }
         resultJson.setStatus(true);
         request.getSession().removeAttribute("userId");
+        return resultJson;
+    }
+
+    //获取用户的好友列表
+    @RequestMapping(value = "/getFriendsList", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultJson getFriendsList(HttpServletRequest request) {
+        ResultJson resultJson = new ResultJson(false);
+        //从Session中获取userId
+        String userIdStr = (String) request.getSession().getAttribute("userId");
+        int userId = Integer.parseInt(userIdStr);
+        List<FriendshipEntity> friendshipEntities =
+                friendshipService.getFriendsList(userId);
+        List<FriendInfo> friendInfos = new ArrayList<FriendInfo>();
+        for (FriendshipEntity friendshipEntity : friendshipEntities) {
+            FriendInfo friendInfo = new FriendInfo();
+            int friendId = friendshipEntity.getfUserId()==userId?
+                    friendshipEntity.getsUserId():friendshipEntity.getfUserId();
+            friendInfo.setFriendId(friendId);
+            UserEntity friend = userService.checkRepeatUserId(friendId);
+            friendInfo.setOnline(friend.getOnline());
+            if (friend.getLastLoginTime()!=null) {
+                DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                friendInfo.setLastLoginTime(sdf.format(friend.getLastLoginTime()));
+            }
+            friendInfos.add(friendInfo);
+        }
+
+        resultJson.setStatus(true);
+        resultJson.setResultObj(friendInfos);
         return resultJson;
     }
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <link type="text/css" href="jquery-ui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/default.css" type="text/css">
+</head>
+<body>
+<div id="container">
+    <div id="login_logo"></div>
+    <div id="login_box">
+        <form>
+            <div>
+                <input type="hidden" name="FormID" value="">
+                <span class="login_password">账&nbsp;号:</span>
+                <span style="margin-left: 47px;">
+                    <input id="login_username_input" type="text" name="UserNameEntryField" required="required" autofocus="autofocus" maxlength="20" placeholder="用户id"><br>
+                </span>
+                <span class="login_password">密&nbsp;码:</span>
+                <span style="margin-left: 47px;">
+		            <input id="login_password_input" type="password" required="required" name="Password" placeholder="密码">
+	            </span>
+
+                <div id="demo_text">
+                </div>
+                <input id="login_button" class="button" type="button" value="登  录" name="SubmitUser"><br>
+                <input id="register_button" class="button" type="button" value="注  册" name="SubmitUser"><br>
+            </div>
+        </form>
+    </div>
+    <br>
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="login.js"></script>
+</body>
+
+</html>

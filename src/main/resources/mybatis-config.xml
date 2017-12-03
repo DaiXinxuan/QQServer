@@ -7,5 +7,6 @@
     <typeAliases>
         <typeAlias type="org.qq.server.entity.UserEntity" alias="UserEntity"/>
         <typeAlias type="org.qq.server.entity.FriendshipEntity" alias="FriendshipEntity"/>
+        <typeAlias type="org.qq.server.entity.MessageEntity" alias="MessageEntity"/>
     </typeAliases>
 </configuration>

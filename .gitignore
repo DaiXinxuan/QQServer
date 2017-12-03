@@ -205,4 +205,4 @@ proguard/
 ### xface
 .fetch.json
 /bin/
-src/main/resources/jdbc.properties
+

@@ -6,6 +6,8 @@ import org.qq.server.service.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by dxx on 2017/11/10.
  */
@@ -29,5 +31,9 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     public FriendshipEntity getFriendship(int fUserId, int sUserId) {
         return friendshipDao.selectShipByUserIds(fUserId, sUserId);
+    }
+
+    public List<FriendshipEntity> getFriendsList(int userId) {
+        return friendshipDao.getFriendsList(userId);
     }
 }

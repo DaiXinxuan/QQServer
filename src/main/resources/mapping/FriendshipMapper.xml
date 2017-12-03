@@ -14,4 +14,7 @@
         DELETE FROM friendship where friendshipId=#{0}
     </delete>
 
+    <select id="getFriendsList" parameterType="Integer" resultType="FriendshipEntity">
+        SELECT * FROM friendship WHERE fUserId=#{0} OR sUserId=#{0}
+    </select>
 </mapper>
